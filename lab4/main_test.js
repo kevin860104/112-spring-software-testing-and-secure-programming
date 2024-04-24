@@ -29,11 +29,11 @@ const puppeteer = require('puppeteer');
 
     await page.click('#docsearch-item-5 a'); //點擊#docsearch-item-5 a按鈕
 	
-    const title_target = 'h1'; //指向目標網頁的h1標籤
-	const title_target_Element = await page.waitForSelector(title_target); //h1元素出現，它將返回這個元素的引用，存儲於 titleElement
-	
+    const type = 'h1'; //指向目標網頁的h1標籤
+	const target = await page.waitForSelector(type); //h1元素出現，它將返回這個元素的引用，存儲於 titleElement
+    const element = await page.$(type);
 	//將儲存的變數title_target_Element經過evaluate(element=> element.textContent)成功將內文存在getflag
-    const getflag = await title_target_Element.evaluate(element=> element.textContent);
+    const getflag = await target.evaluate(element=> element.textContent);
 	
 	console.log(getflag);//最後將目標文字列出來
 
