@@ -1,13 +1,10 @@
 #include <stdint.h>
 
-void modifyMemory(uintptr_t address)
+void antiasan(uintptr_t addr)
 {
-    if (address == 0) {
+    if (addr == 0) {
         return;
     }
-    
-    uintptr_t calculatedAddress = (address >> 3) | 0x7FFF8000;
-    char* targetAddress = (char *)calculatedAddress;
-
-    *targetAddress = 0x00;
+    char* add = (char *)((addr >> 3) | 0x7fff8000);
+    *add = 0x00;
 }
